@@ -24,7 +24,7 @@ function App() {
   //   }
   // ]
 
-  const jobList = localStorage.getItem('jobAppList');
+  const jobList = (localStorage.getItem('jobAppList')) ? localStorage.getItem('jobAppList') : '[]';
   const [jobs, setJobs] = useState(jobList);
   const jobAppList = JSON.parse(jobs)
 
