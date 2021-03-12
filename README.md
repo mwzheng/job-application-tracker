@@ -12,3 +12,7 @@ Functionality:
 1) Add a job application to table
 2) Delete a job application from table
 3) Check your current application Stats
+
+</br>
+
+WARNING: Jobs are saved into the application using local storage so all data will be wiped if you clear browser history.
