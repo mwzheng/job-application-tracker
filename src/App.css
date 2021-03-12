@@ -1,0 +1,153 @@
+body {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: #7db7e7;
+    margin: 20px;
+}
+
+table {
+    border-spacing: 3px;
+    margin: 10px 0px;
+    width: 50vw;
+    border-radius: 10px;
+    padding: 5px;
+    border-style: ridge;
+    border-width: 5px;
+    background-color: whitesmoke;
+}
+
+td, tr {
+    border-style: solid;
+    margin: 1px 5px;
+    padding: 1px 5px;
+    text-align: center;
+}
+
+td {
+    font-size: 1.1vw;
+}
+
+h3 {
+    text-align: center;
+    margin: 5px;
+}
+
+th {
+    border-style:solid;
+    border-width: 3px;
+    font-size: 1.5vw;
+    padding: 0px 2px;
+}
+
+input:focus, button:focus {
+    outline: none;
+    box-shadow: none;
+    overflow: hidden;
+}
+
+input {
+    margin: 0px 1vw 0px .1vw;
+    width: 1vw;
+    height: 2vh;
+}
+
+button, input, label {
+    font-size: 1vw;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1.2vw;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.inputDiv {
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items:baseline;
+    margin:auto;
+}
+
+#companyName, #jobLocation {
+    width: 6vw;
+}
+
+#appLink {
+    width: 5vw
+}
+
+.status, .link {
+    padding: 0%;
+}
+
+#jobStats {
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+    text-align: center;
+    margin: 10px 20px;
+}
+
+#statsContainer {
+    border-style: ridge;
+    margin: 0px 0px 20px 0px;
+    border-radius: 15px;
+    font-size: 1.2vw;
+    background-color: #5ca6e2;
+}
+
+.statusButton, .jobLinkButton, .deleteButton {
+    width: 100%;
+    height: 2.5vh;
+}
+
+#addJobButton {
+    height: 2.7vh;
+    width: 3.4vw;
+    font-size: 1vw;
+    overflow: hidden;
+}
+
+.jobLinkButton:hover {
+    background-color: #9eccf1;
+}
+
+.delete {
+    width: .2vw;
+    transition: ease-in-out .5s;
+    padding: 0px;
+}
+
+.deleteButton {
+    transition: ease-in-out .5s;
+}
+
+.deleteButton:hover {
+    background-color: rgb(236, 174, 186);
+}
+
+.jobLinkButton {
+    transition: ease-in-out .5s;
+}
+
+.statusButton {
+    padding: 0px 0px;
+    transition: ease-in-out .3s;
+}
+
+.statusButton:hover {
+    color: #168cec;
+}
+
+#applied.statusButton {
+    background-color: rgb(178, 238, 178);
+}
+
+#rejected.statusButton {
+    background-color: rgb(241, 177, 177);
+}
