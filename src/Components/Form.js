@@ -23,9 +23,9 @@ const Form = ({ jobs, setJobs }) => {
 
     // Adds a new job application to the table
     const addNewJobApp = () => {
-        let name = titleCase(document.getElementById('companyName').value);
-        let location = capitalizeState(titleCase(document.getElementById('jobLocation').value));
-        let link = document.getElementById('appLink').value;
+        let name = titleCase(document.getElementById('companyName').value.trim());
+        let location = capitalizeState(titleCase(document.getElementById('jobLocation').value.trim()));
+        let link = document.getElementById('appLink').value.trim();
 
         if (name === '' || location === '' || link === '') return
 
