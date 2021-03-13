@@ -151,3 +151,20 @@ button:hover {
 #rejected.statusButton {
     background-color: rgb(241, 177, 177);
 }
+
+#resetContainer {
+    display: flex;
+}
+
+#resetButton {
+    margin: auto;
+    transition: ease-in-out .3s;
+    background-color: rgb(245, 193, 193);
+    font-weight: bold;
+    font-size: 1.45vw;
+    border-radius: 10px;
+}
+
+#resetButton:hover {
+    background-color: rgb(248, 147, 147);
+}

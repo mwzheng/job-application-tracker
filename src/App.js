@@ -3,6 +3,7 @@ import './App.css';
 import Table from './Components/Table';
 import Form from './Components/Form';
 import Stats from './Components/Stats';
+import Reset from './Components/Reset';
 
 function App() {
   //const sampleData = [
@@ -54,6 +55,7 @@ function App() {
       <Stats jobs={jobs} />
       <Form jobs={jobs} setJobs={setJobs} />
       <Table jobs={jobs} setJobs={setJobs} />
+      <Reset setJobs={setJobs} />
     </div>
   );
 }

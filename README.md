@@ -14,6 +14,7 @@ Functionality:
 1) Add a job application to table
 2) Delete a job application from table
 3) Check your current application Stats
+4) Reset table data
 
 </br>
 
