@@ -2,6 +2,8 @@
 
 </br>
 
+[Try it out yourself](https://job-app-tracker.netlify.app/)
+
 A simple react application to help you keep track of all the jobs that you've applied to. Each job includes the date at which you added it, the company name, the job location, a link to the job posting and the status of the application.
 
 At the top of the page is a simple job stat which includes the number of jobs you've applied to, the number of applications you're waiting on, the number of jobs you've been rejected from and the percentage of jobs you've been rejected from.

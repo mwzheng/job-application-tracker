@@ -1,17 +1,18 @@
 import React from 'react';
 import Tablerow from './Tablerow';
 
+// Component to make and display the entire table
 const Table = ({ jobs, setJobs }) => {
     const lst = JSON.parse(jobs);
 
     // Populates the table with data on job apps
     const makeTable = () => {
         return lst.map(anApp => {
-            let { number, name, location, link, status } = anApp;
+            let { number, name, date, location, link, status } = anApp;
 
             return <Tablerow
                 key={number} jobs={jobs} setJobs={setJobs} number={number} name={name}
-                location={location} link={link} status={status}
+                date={date} location={location} link={link} status={status}
             />;
         })
     }

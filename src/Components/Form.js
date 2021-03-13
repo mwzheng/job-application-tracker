@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Component used for form to input new data into the table 
 const Form = ({ jobs, setJobs }) => {
     const jobList = JSON.parse(jobs);
 
@@ -9,7 +10,7 @@ const Form = ({ jobs, setJobs }) => {
         return input.split(' ').map(word => word[0].toUpperCase() + word.substr(1)).join(' ');
     }
 
-    // Capitalizes the state for locations
+    // Capitalizes the state for locations (Ex Herndon, va => Herndon, VA)
     const capitalizeState = (input) => {
         if (input === undefined) return;
         let tokens = input.split(',').map(token => token.trim())
@@ -31,15 +32,16 @@ const Form = ({ jobs, setJobs }) => {
         const newJobApp = {
             "number": jobList.length + 1,
             "name": name,
+            "date": new Date().toLocaleDateString(),
             "location": location,
             "link": link,
             "status": "Applied"
         }
 
         jobList.push(newJobApp);
-        let newJobAppList = JSON.stringify(jobList)
-        localStorage.setItem('jobAppList', newJobAppList);
-        setJobs(newJobAppList);
+        let updatedJobAppList = JSON.stringify(jobList)
+        localStorage.setItem('jobAppList', updatedJobAppList);
+        setJobs(updatedJobAppList);
         clearInputs();
     }
 

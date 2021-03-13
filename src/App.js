@@ -5,22 +5,14 @@ import Form from './Components/Form';
 import Stats from './Components/Stats';
 
 function App() {
-  // Below are 2 examples of job objects in JSON format
-  // 
-  //const jobList = [
+  //const sampleData = [
   //   {
   //     "number": 1,
+  //     "date": "03/13/21"
   //     "name": "Ascending LLC",
   //     "location": "Rockville, Md",
   //     "link": "https://www.linkedin.com/jobs/view/java-software-developer-in-test-jr-to-senior-at-ascending-llc-2438936060/",
   //     "status": "Rejected"
-  //   },
-  //   {
-  //     "number": 2,
-  //     "name": "T-Mobile",
-  //     "location": "Reston, Va",
-  //     "link": "https://www.linkedin.com/jobs/view/2442945207/",
-  //     "status": "Applied"
   //   }
   // ]
 
@@ -29,15 +21,26 @@ function App() {
   const jobAppList = JSON.parse(jobs)
 
   const calcJobStats = () => {
-    console.log(jobAppList)
     let numbOfApplications = jobAppList.length
+    let daysOfJobSearching = 0;
+
+    // Calculate # rejections & rejection rate
     let numbOfRejections = jobAppList.filter(anApp => anApp.status === 'Rejected').length;
     let rejectionPercentage = ((numbOfRejections) / numbOfApplications) * 100
-    let waitingApps = numbOfApplications - numbOfRejections;
     rejectionPercentage = (isNaN(rejectionPercentage)) ? 0 : rejectionPercentage.toFixed(2);
 
-    console.log("Number of rejections: " + rejectionPercentage);
+    // Calculate # of apps still waiting on
+    let waitingApps = numbOfApplications - numbOfRejections;
 
+    // Calculate # of days job searching
+    if (jobAppList[0]) {
+      let dateToday = new Date().getDate();
+      let earliestAppDate = new Date(jobAppList[0]["date"]).getDate();
+      daysOfJobSearching = dateToday - earliestAppDate;
+      daysOfJobSearching = (isNaN(daysOfJobSearching)) ? 0 : daysOfJobSearching + 1;
+    }
+
+    document.getElementById('jobSearchingDays').innerHTML = daysOfJobSearching;
     document.getElementById('numbApplied').innerHTML = numbOfApplications;
     document.getElementById('numbWaiting').innerHTML = waitingApps;
     document.getElementById('numbRejections').innerHTML = numbOfRejections;

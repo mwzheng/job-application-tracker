@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Tablerow = ({ jobs, setJobs, number, name, location, link, status }) => {
+// Component creates an individual row in the table for a single job application
+const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status }) => {
     let appStatus = status === "Applied" ? 'applied' : 'rejected';
     let jobList = JSON.parse(jobs);
 
@@ -45,7 +46,7 @@ const Tablerow = ({ jobs, setJobs, number, name, location, link, status }) => {
     return (
         <tr key={number}>
             <td className='number'>{number}</td>
-            <td className='date'>{new Date().toLocaleDateString()}</td>
+            <td className='date'>{date}</td>
             <td className='companyName'>{name}</td>
             <td className='jobLocation'>{location}</td>
             <td className='link'><button className='jobLinkButton' onClick={e => openLink(link)}>I</button></td>
