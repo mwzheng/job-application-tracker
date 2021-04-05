@@ -35,10 +35,10 @@ function App() {
 
     // Calculate # of days job searching
     if (jobAppList[0]) {
-      let dateToday = new Date().getDate();
-      let earliestAppDate = new Date(jobAppList[0]["date"]).getDate();
-      daysOfJobSearching = dateToday - earliestAppDate;
-      daysOfJobSearching = (isNaN(daysOfJobSearching)) ? 0 : daysOfJobSearching + 1;
+      let dateToday = new Date();
+      let earliestAppDate = new Date(jobAppList[0]["date"]);
+      daysOfJobSearching = Math.floor((dateToday - earliestAppDate) / (1000 * 60 * 60 * 24)) + 1;
+      daysOfJobSearching = (isNaN(daysOfJobSearching)) ? 0 : daysOfJobSearching;
     }
 
     document.getElementById('jobSearchingDays').innerHTML = daysOfJobSearching;
