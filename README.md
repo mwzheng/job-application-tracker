@@ -18,4 +18,10 @@ Functionality:
 
 </br>
 
+To Run:
+
+    $npm install
+    $npm start
+
+
 WARNING: Jobs are saved into the application using local storage so all data will be wiped if you clear browser history.
