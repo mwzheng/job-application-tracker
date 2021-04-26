@@ -1,33 +1,43 @@
 import React from 'react';
 
 // Component creates an individual row in the table for a single job application
-const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status }) => {
+const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, progress }) => {
     let appStatus = status === "Applied" ? 'applied' : 'rejected';
+    let jobAppIndex = number - 1; // Index of job App in jobs array
     let jobList = JSON.parse(jobs);
+
+    progress = (progress) ? progress : 'Waiting';
 
     // Opens job application link in a new tab
     const openLink = (jobLink) => {
         window.open(jobLink, '_blank');
     }
 
-    // Change the status for a single job application
-    const changeStatus = (e) => {
-        let jobAppNumber = e.target.getAttribute('appnumber') - 1;
-        let updateJob = jobList[jobAppNumber];
-        updateJob.status = updateJob.status === 'Rejected' ? "Applied" : "Rejected";
+    // Change the progress of the job app
+    const changeProgress = () => {
+        let newJobList = jobList;
+        let job = newJobList[jobAppIndex];
 
-        const newJobList = jobList;
-        newJobList[jobAppNumber] = updateJob;
-        jobList[jobAppNumber] = updateJob;
+        job.progress = (progress === 'In Progress') ? "Waiting" : 'In Progress';
 
-        let newJobAppList = JSON.stringify(newJobList);
-        localStorage.setItem('jobAppList', newJobAppList);
-        setJobs(newJobAppList);
+        newJobList[jobAppIndex] = job;
+        updateJobList(newJobList);
+    }
+
+    // Change the status for current job application row
+    const changeStatus = () => {
+        let updatedJob = jobList[jobAppIndex];
+        let newJobList = jobList;
+
+        updatedJob.status = (status === 'Rejected') ? "Applied" : "Rejected";
+
+        newJobList[jobAppIndex] = updatedJob;
+        updateJobList(newJobList);
     }
 
     // Deletes the job app from the table
     const deleteJobApp = (number) => {
-        // Remove the job app from the list
+        // Remove the job app with number from the list
         let updateJobList = jobList.filter(aJobApp => aJobApp.number !== number);
         let jobNumber = 1;
 
@@ -38,9 +48,14 @@ const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status })
             return aJobApp;
         })
 
-        updateJobList = JSON.stringify(updateJobList);
-        setJobs(updateJobList);
-        localStorage.setItem('jobAppList', updateJobList);
+        updateJobList(updateJobList);
+    }
+
+    // Update job list state & localstorage data
+    const updateJobList = (updatedList) => {
+        let newJobList = JSON.stringify(updatedList);
+        setJobs(newJobList);
+        localStorage.setItem('jobAppList', newJobList);
     }
 
     return (
@@ -50,7 +65,8 @@ const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status })
             <td className='companyName'>{name}</td>
             <td className='jobLocation'>{location}</td>
             <td className='link'><button className='jobLinkButton' onClick={e => openLink(link)}>I</button></td>
-            <td className='status'><button className='statusButton' id={appStatus} appnumber={number} onClick={e => changeStatus(e)}>{status}</button></td>
+            <td className='progress'><button className='progressButton' onClick={e => changeProgress()}>{progress}</button></td>
+            <td className='status'><button className='statusButton' id={appStatus} onClick={e => changeStatus()}>{status}</button></td>
             <td className='delete'><button className='deleteButton' onClick={e => deleteJobApp(number)}>x</button></td>
         </tr>
     )

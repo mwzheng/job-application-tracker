@@ -8,11 +8,11 @@ const Table = ({ jobs, setJobs }) => {
     // Populates the table with data on job apps
     const makeTable = () => {
         return lst.map(anApp => {
-            let { number, name, date, location, link, status } = anApp;
+            let { number, name, date, location, link, status, progress } = anApp;
 
             return <Tablerow
                 key={number} jobs={jobs} setJobs={setJobs} number={number} name={name}
-                date={date} location={location} link={link} status={status}
+                date={date} location={location} link={link} status={status} progress={progress}
             />;
         })
     }
@@ -25,6 +25,7 @@ const Table = ({ jobs, setJobs }) => {
                 <th>Company Name</th>
                 <th>Location</th>
                 <th>Link</th>
+                <th>Progress</th>
                 <th>Status</th>
             </tr>
             {
