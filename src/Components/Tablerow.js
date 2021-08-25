@@ -38,17 +38,17 @@ const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, p
     // Deletes the job app from the table
     const deleteJobApp = (number) => {
         // Remove the job app with number from the list
-        let updateJobList = jobList.filter(aJobApp => aJobApp.number !== number);
+        let updatedJobList = jobList.filter(aJobApp => aJobApp.number !== number);
         let jobNumber = 1;
 
         // Re-index # for each job in the list
-        updateJobList = updateJobList.map(aJobApp => {
+        updatedJobList = updatedJobList.map(aJobApp => {
             aJobApp.number = jobNumber;
             jobNumber++;
             return aJobApp;
         })
 
-        updateJobList(updateJobList);
+        updateJobList(updatedJobList);
     }
 
     // Update job list state & localstorage data
@@ -60,16 +60,32 @@ const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, p
 
     return (
         <tr key={number}>
-            <td className='number'>{number}</td>
-            <td className='date'>{date}</td>
-            <td className='companyName'>{name}</td>
-            <td className='jobLocation'>{location}</td>
-            <td className='link'><button className='jobLinkButton' onClick={e => openLink(link)}>I</button></td>
-            <td className='progress'><button className='progressButton' onClick={e => changeProgress()}>{progress}</button></td>
-            <td className='status'><button className='statusButton' id={appStatus} onClick={e => changeStatus()}>{status}</button></td>
-            <td className='delete'><button className='deleteButton' onClick={e => deleteJobApp(number)}>x</button></td>
+            <td className='number'>
+                {number}
+            </td>
+            <td className='date'>
+                {date}
+            </td>
+            <td className='companyName'>
+                {name}
+            </td>
+            <td className='jobLocation'>
+                {location}
+            </td>
+            <td className='link'>
+                <button className='jobLinkButton' onClick={e => openLink(link)}>I</button>
+            </td>
+            <td className='progress'>
+                <button className='progressButton' onClick={e => changeProgress()}>{progress}</button>
+            </td>
+            <td className='status'>
+                <button className='statusButton' id={appStatus} onClick={e => changeStatus()}>{status}</button>
+            </td>
+            <td className='delete'>
+                <button className='deleteButton' onClick={e => deleteJobApp(number)}>x</button>
+            </td>
         </tr>
-    )
+    );
 }
 
 export default Tablerow;
