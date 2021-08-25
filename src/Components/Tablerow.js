@@ -2,7 +2,7 @@ import React from 'react';
 
 // Component creates an individual row in the table for a single job application
 const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, progress }) => {
-    let appStatus = status === "Applied" ? 'applied' : 'rejected';
+    let appStatus = (status === "Applied") ? 'applied' : 'rejected';
     let jobAppIndex = number - 1; // Index of job App in jobs array
     let jobList = JSON.parse(jobs);
 
@@ -13,7 +13,6 @@ const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, p
         window.open(jobLink, '_blank');
     }
 
-    // Change the progress of the job app
     const changeProgress = () => {
         let newJobList = jobList;
         let job = newJobList[jobAppIndex];
@@ -24,7 +23,6 @@ const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, p
         updateJobList(newJobList);
     }
 
-    // Change the status for current job application row
     const changeStatus = () => {
         let updatedJob = jobList[jobAppIndex];
         let newJobList = jobList;
@@ -35,7 +33,6 @@ const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, p
         updateJobList(newJobList);
     }
 
-    // Deletes the job app from the table
     const deleteJobApp = (number) => {
         // Remove the job app with number from the list
         let updatedJobList = jobList.filter(aJobApp => aJobApp.number !== number);
