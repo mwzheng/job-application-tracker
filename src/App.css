@@ -61,7 +61,7 @@ label {
     font-size: 1.2vw;
 }
 
-button:hover {
+button:hover:enabled {
     cursor: pointer;
 }
 
@@ -116,7 +116,7 @@ button:hover {
     overflow: hidden;
 }
 
-.jobLinkButton:hover, .progressButton:hover {
+.jobLinkButton:hover, .progressButton:hover:enabled {
     background-color: #9eccf1;
 }
 

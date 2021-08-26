@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Component creates an individual row in the table for a single job application
 const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, progress }) => {
+    const [disableProgress, setDisableProgress] = useState(status === 'Rejected');
     let appStatus = (status === "Applied") ? 'applied' : 'rejected';
     let jobAppIndex = number - 1; // Index of job App in jobs array
     let jobList = JSON.parse(jobs);
-
     progress = (progress) ? progress : 'Waiting';
 
     // Opens job application link in a new tab
@@ -27,6 +27,7 @@ const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, p
         let updatedJob = jobList[jobAppIndex];
         let newJobList = jobList;
 
+        setDisableProgress(status === 'Applied');
         updatedJob.status = (status === 'Rejected') ? "Applied" : "Rejected";
 
         newJobList[jobAppIndex] = updatedJob;
@@ -73,7 +74,7 @@ const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, p
                 <button className='jobLinkButton' onClick={e => openLink(link)}>I</button>
             </td>
             <td className='progress'>
-                <button className='progressButton' onClick={e => changeProgress()}>{progress}</button>
+                <button className='progressButton' disabled={disableProgress} onClick={e => changeProgress()}>{progress}</button>
             </td>
             <td className='status'>
                 <button className='statusButton' id={appStatus} onClick={e => changeStatus()}>{status}</button>
