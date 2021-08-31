@@ -2,26 +2,37 @@
 
 </br>
 
+![Application Preview](preview.png)
+
 [Try it out yourself](https://job-app-tracker.netlify.app/)
 
-A simple react application to help you keep track of all the jobs that you've applied to. Each job includes the date at which you added it, the company name, the job location, a link to the job posting and the status of the application.
+A simple react application to help you keep track of all the jobs that you've applied to. Each job includes the date at which you added it, the company name, the job location, a link to the job posting, your application progress (Waiting/In Progress) and the status of the application (Applied/Rejected).
 
-At the top of the page is a simple job stat which includes the number of jobs you've applied to, the number of applications you're waiting on, the number of jobs you've been rejected from and the percentage of jobs you've been rejected from.
+At the top of the page are simple job stats which include the number of days you've been job searching for (Based on your earliest job application), the number of jobs you've applied to, the number of applications you're waiting on, the number of jobs you've been rejected from and the percentage of jobs you've been rejected from.
 
-</br>
+### Functionality:
+1. Add a job application to table
+2. Open the job application in new tab
+3. Check/Change your progress or status for a job application
+4. Delete a job application from table
+5. Check your application Stats
+6. Reset table data
 
-Functionality:
-1) Add a job application to table
-2) Delete a job application from table
-3) Check your current application Stats
-4) Reset table data
-
-</br>
-
-To Run:
-
+### To Run:
     $npm install
     $npm start
 
+### Sample Job JSON Format
+``` 
+{ 
+    "number": 1,
+    "date": "08/13/21",
+    "name": "Some Company Name",
+    "location": "City, State",
+    "link": "someRandomJobLink.com",
+    "progress": "In Progress",
+    "status": "Rejected"
+} 
+```
 
-WARNING: Jobs are saved into the application using local storage so all data will be wiped if you clear browser history.
+**WARNING: Jobs are saved into the application using local storage so all data will be wiped if you clear browser history.**
