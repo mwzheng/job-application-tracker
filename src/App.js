@@ -4,6 +4,7 @@ import Table from './Components/Table';
 import Form from './Components/Form';
 import Stats from './Components/Stats';
 import Reset from './Components/Reset';
+import Footer from './Components/Footer';
 
 function App() {
   // const sampleData = [
@@ -27,6 +28,7 @@ function App() {
       <Form jobs={jobs} setJobs={setJobs} />
       <Table jobs={jobs} setJobs={setJobs} />
       <Reset setJobs={setJobs} />
+      <Footer />
     </div>
   );
 }
