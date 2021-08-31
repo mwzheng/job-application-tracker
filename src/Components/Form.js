@@ -28,11 +28,12 @@ const Form = ({ jobs, setJobs }) => {
 
     // Adds a new job application to the table
     const addNewJobApp = () => {
+        if (jobName === '' || jobLocation === '' || jobLink === '')
+            return;
+
         let name = titleCase(jobName.trim());
         let location = capitalizeState(titleCase(jobLocation.trim()));
         let link = jobLink.trim();
-
-        if (name === '' || location === '' || link === '') return;
 
         const newJobApp = {
             "number": jobList.length + 1,
