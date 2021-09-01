@@ -16,7 +16,8 @@ At the top of the page are simple job stats which include the number of days you
 3. Check/Change your progress or status for a job application
 4. Delete a job application from table
 5. Check your application Stats
-6. Reset table data
+6. Edit a job app's name, location or link
+7. Reset table data
 
 ### To Run:
     $npm install

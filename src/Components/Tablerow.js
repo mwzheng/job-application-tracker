@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // Component creates an individual row in the table for a single job application
-const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, progress }) => {
+const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, progress, setShowUpdateModal, setJobAppToUpdate }) => {
     const [disableProgress, setDisableProgress] = useState(status === 'Rejected');
     let appStatus = (status === "Applied") ? 'applied' : 'rejected';
     let jobAppIndex = number - 1; // Index of job App in jobs array
@@ -56,8 +56,18 @@ const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, p
         localStorage.setItem('jobAppList', newJobList);
     }
 
+    const editJobApp = () => {
+        setShowUpdateModal(true);
+        setJobAppToUpdate(number - 1)
+    }
+
     return (
         <tr key={number}>
+            <td className='edit'>
+                <button className='editBttn' onClick={e => editJobApp()}>
+                    <i className="fa fa-edit" aria-hidden="true"></i>
+                </button>
+            </td>
             <td className='number'>
                 {number}
             </td>
@@ -80,7 +90,9 @@ const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, p
                 <button className='statusButton' id={appStatus} onClick={e => changeStatus()}>{status}</button>
             </td>
             <td className='delete'>
-                <button className='deleteButton' onClick={e => deleteJobApp(number)}>x</button>
+                <button className='deleteButton' onClick={e => deleteJobApp(number)}>
+                    <i className="fa fa-trash" aria-hidden="true"></i>
+                </button>
             </td>
         </tr>
     );
