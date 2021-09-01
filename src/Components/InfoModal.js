@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Modal = ({ showModal, setShowModal }) => {
-    return (showModal) ? <div className='modal' onClick={e => setShowModal(false)}>
+const InfoModal = ({ showInfoModal, setShowInfoModal }) => {
+    return (showInfoModal) ? <div className='modal' onClick={e => setShowInfoModal(false)}>
         <div className='modalContent'>
             <div className='modalHeader'>
                 <span id='modalTitle'>Job Application Tracker</span>
-                <button id='closeModalBttn' onClick={e => setShowModal(false)}>X</button>
+                <button id='closeModalBttn' onClick={e => setShowInfoModal(false)}>X</button>
             </div>
             <div className='modalBody'>
                 <div id='intro'>
@@ -16,7 +16,7 @@ const Modal = ({ showModal, setShowModal }) => {
                         If you found this site, then it probably means you are currently
                         job hunting. This is a simple web app that I created to help keep track of your job applications,
                         whether you are searching for your first or next job. At the top of the page, there are stats based on the data
-                        you have entered into the tracker.
+                        you have entered into the tracker. All data entered will only be stored locally in your browser.
                     </p>
                     <hr />
                     <span className='sectionHeader'>Stat Meaning</span>
@@ -46,10 +46,10 @@ const Modal = ({ showModal, setShowModal }) => {
             </div>
             <div className='modalFotter'>
                 <i>IMPORTANT: Job data entered into this app are stored in localStorage.
-                    DO NOT CLEAR CACHE OR DATA WILL BE LOST.</i>
+                    DO NOT CLEAR BROWSER DATA OR DATA WILL BE LOST.</i>
             </div>
         </div>
     </div> : null
 }
 
-export default Modal;
+export default InfoModal;

@@ -5,7 +5,7 @@ import Form from './Components/Form';
 import Stats from './Components/Stats';
 import Reset from './Components/Reset';
 import Footer from './Components/Footer';
-import Modal from './Components/Modal';
+import InfoModal from './Components/InfoModal';
 
 function App() {
   // const sampleData = [
@@ -22,16 +22,16 @@ function App() {
 
   const jobList = (localStorage.getItem('jobAppList')) ? localStorage.getItem('jobAppList') : '[]';
   const [jobs, setJobs] = useState(jobList);
-  const [showModal, setShowModal] = useState(false);
+  const [showInfoModal, setShowInfoModal] = useState(false);
 
   return (
     <div className="App">
       <Stats jobs={jobs} />
       <Form jobs={jobs} setJobs={setJobs} />
-      <Table jobs={jobs} setJobs={setJobs} setShowModal={setShowModal} />
+      <Table jobs={jobs} setJobs={setJobs} setShowInfoModal={setShowInfoModal} />
       <Reset setJobs={setJobs} />
       <Footer />
-      <Modal showModal={showModal} setShowModal={setShowModal} />
+      <InfoModal showInfoModal={showInfoModal} setShowInfoModal={setShowInfoModal} />
     </div>
   );
 }
