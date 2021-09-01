@@ -2,7 +2,7 @@ import React from 'react';
 import Tablerow from './Tablerow';
 
 // Component to make and display the entire table
-const Table = ({ jobs, setJobs }) => {
+const Table = ({ jobs, setJobs, setShowModal }) => {
     const lst = JSON.parse(jobs);
 
     // Populates the table with data on job apps
@@ -27,6 +27,11 @@ const Table = ({ jobs, setJobs }) => {
                 <th>Link</th>
                 <th>Progress</th>
                 <th>Status</th>
+                <th className='infoTh'>
+                    <button id='infoBttn' onClick={e => setShowModal(true)}>
+                        <i className="fa fa-info-circle" aria-hidden="true"></i>
+                    </button>
+                </th>
             </tr>
             {
                 makeTable()
