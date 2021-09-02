@@ -8,10 +8,10 @@ const Footer = () => {
 
     return <div className='footer'>
         <i className="fa fa-copyright" aria-hidden="true">
-            <span>{yearAppCreated} - {currentYear}</span>
+            <span> {yearAppCreated} - {currentYear}</span>
         </i>
         <i className="fa fa-github" aria-hidden="true">
-            <span><a href={githubLink} rel="noreferrer" target="_blank">GitHub</a></span>
+            <span> <a href={githubLink} rel="noreferrer" target="_blank">GitHub</a></span>
         </i>
     </div>;
 }
