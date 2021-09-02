@@ -236,11 +236,11 @@ i, p {
     margin: 2px 2px 0 0;
 }
 
-.modalBody, .modalFooter {
+.modalBody {
     margin: 1vw 0 1vw 0;
 }
 
-#intro, #directions {
+#introDiv, #directions {
     text-align: left;
     margin: .5vw 0 .5vw 0;
     font-size: 1.25vw;
@@ -250,6 +250,7 @@ i, p {
     font-size: 1.5vw;
     font-weight: bold;
     margin-left: 5px;
+    text-align: center;
 }
 
 .appData, .updateAppForm {

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 // Component creates an individual row in the table for a single job application
-const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, progress, setShowUpdateModal, setJobAppToUpdate }) => {
+const Tablerow = ({ jobs, appData, setJobs, setShowUpdateModal, setJobAppToUpdate }) => {
+    let { number, name, date, location, link, status, progress } = appData;
     const [disableProgress, setDisableProgress] = useState(status === 'Rejected');
     let appStatus = (status === "Applied") ? 'applied' : 'rejected';
     let jobAppIndex = number - 1; // Index of job App in jobs array
@@ -14,24 +15,18 @@ const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, p
     }
 
     const changeProgress = () => {
-        let newJobList = jobList;
-        let job = newJobList[jobAppIndex];
-
+        let job = jobList[jobAppIndex];
         job.progress = (progress === 'In Progress') ? "Waiting" : 'In Progress';
-
-        newJobList[jobAppIndex] = job;
-        updateJobList(newJobList);
+        jobList[jobAppIndex] = job;
+        updateJobList(jobList);
     }
 
     const changeStatus = () => {
         let updatedJob = jobList[jobAppIndex];
-        let newJobList = jobList;
-
         setDisableProgress(status === 'Applied');
         updatedJob.status = (status === 'Rejected') ? "Applied" : "Rejected";
-
-        newJobList[jobAppIndex] = updatedJob;
-        updateJobList(newJobList);
+        jobList[jobAppIndex] = updatedJob;
+        updateJobList(jobList);
     }
 
     const deleteJobApp = (number) => {
@@ -61,41 +56,41 @@ const Tablerow = ({ jobs, setJobs, number, name, date, location, link, status, p
         setJobAppToUpdate(number - 1)
     }
 
-    return (
-        <tr key={number}>
-            <td className='edit'>
-                <button className='editBttn' onClick={e => editJobApp()}>
-                    <i className="fa fa-edit" aria-hidden="true"></i>
-                </button>
-            </td>
-            <td className='number'>
-                {number}
-            </td>
-            <td className='date'>
-                {date}
-            </td>
-            <td className='companyName'>
-                {name}
-            </td>
-            <td className='jobLocation'>
-                {location}
-            </td>
-            <td className='link'>
-                <button className='jobLinkButton' onClick={e => openLink(link)}>I</button>
-            </td>
-            <td className='progress'>
-                <button className='progressButton' disabled={disableProgress} onClick={e => changeProgress()}>{progress}</button>
-            </td>
-            <td className='status'>
-                <button className='statusButton' id={appStatus} onClick={e => changeStatus()}>{status}</button>
-            </td>
-            <td className='delete'>
-                <button className='deleteButton' onClick={e => deleteJobApp(number)}>
-                    <i className="fa fa-trash" aria-hidden="true"></i>
-                </button>
-            </td>
-        </tr>
-    );
+    return <tr key={number}>
+        <td className='edit'>
+            <button className='editBttn' onClick={e => editJobApp()}>
+                <i className="fa fa-edit" aria-hidden="true"></i>
+            </button>
+        </td>
+        <td className='number'>
+            {number}
+        </td>
+        <td className='date'>
+            {date}
+        </td>
+        <td className='companyName'>
+            {name}
+        </td>
+        <td className='jobLocation'>
+            {location}
+        </td>
+        <td className='link'>
+            <button className='jobLinkButton' onClick={e => openLink(link)}>
+                <i className="fa fa-link" aria-hidden="true"></i>
+            </button>
+        </td>
+        <td className='progress'>
+            <button className='progressButton' disabled={disableProgress} onClick={e => changeProgress()}>{progress}</button>
+        </td>
+        <td className='status'>
+            <button className='statusButton' id={appStatus} onClick={e => changeStatus()}>{status}</button>
+        </td>
+        <td className='delete'>
+            <button className='deleteButton' onClick={e => deleteJobApp(number)}>
+                <i className="fa fa-trash" aria-hidden="true"></i>
+            </button>
+        </td>
+    </tr>;
 }
 
 export default Tablerow;

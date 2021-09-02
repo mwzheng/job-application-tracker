@@ -7,25 +7,21 @@ import React, { useEffect, useState } from 'react';
 // - # job rejections
 // - % of jobs you've been rejected from
 const Stats = ({ jobs }) => {
-    const jobAppList = JSON.parse(jobs);
     const [jobSearchingDays, setJobSearchingDays] = useState(0);
     const [jobsApplied, setJobsApplied] = useState(0);
     const [jobsWaiting, setJobsWaiting] = useState(0);
     const [jobRejections, setJobRejections] = useState(0);
     const [jobRejectionPercentage, setJobRejectionPercentage] = useState(0);
+    const jobAppList = JSON.parse(jobs);
 
     const calcJobStats = () => {
-        if (jobAppList.length === 0) { // No job apps
-            setStats(0, 0, 0, 0, 0);
-        } else {
-            let numbOfApplications = jobAppList.length;
-            let daysOfJobSearching = calcDaysJobSearching();
-            let numbOfRejections = jobAppList.filter(anApp => anApp.status === 'Rejected').length;
-            let rejectionPercentage = (((numbOfRejections) / numbOfApplications) * 100).toFixed(2);
-            let waitingApps = numbOfApplications - numbOfRejections;
-
-            setStats(daysOfJobSearching, numbOfApplications, waitingApps, numbOfRejections, rejectionPercentage);
-        }
+        if (jobAppList.length === 0) return;
+        let numbOfApplications = jobAppList.length;
+        let daysOfJobSearching = calcDaysJobSearching();
+        let numbOfRejections = jobAppList.filter(anApp => anApp.status === 'Rejected').length;
+        let rejectionPercentage = (((numbOfRejections) / numbOfApplications) * 100).toFixed(2);
+        let waitingApps = numbOfApplications - numbOfRejections;
+        setStats(daysOfJobSearching, numbOfApplications, waitingApps, numbOfRejections, rejectionPercentage);
     }
 
     const setStats = (daysSearching, totalJobs, jobsWaiting, jobsRejected, rejectionPercentage) => {
@@ -74,7 +70,7 @@ const Stats = ({ jobs }) => {
                 <span id='rejections'>{jobRejectionPercentage}</span>%
             </div>
         </div>
-    </div>
+    </div>;
 }
 
 export default Stats;

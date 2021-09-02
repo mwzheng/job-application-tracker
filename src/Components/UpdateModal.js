@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { titleCase, capitalizeState } from '../Utils';
 
 const UpdateModal = ({ setShowUpdateModal, showUpdateModal, jobAppToUpdate, jobs, setJobs }) => {
     const [newJobName, setnewJobName] = useState('');
@@ -13,16 +14,23 @@ const UpdateModal = ({ setShowUpdateModal, showUpdateModal, jobAppToUpdate, jobs
 
     const updateJobApp = () => {
         if (newJobName !== '')
-            lst[jobAppToUpdate]['name'] = newJobName;
+            lst[jobAppToUpdate]['name'] = titleCase(newJobName);
 
         if (newJobLocation !== '')
-            lst[jobAppToUpdate]['location'] = newJobLocation;
+            lst[jobAppToUpdate]['location'] = capitalizeState(titleCase(newJobLocation));
 
         if (newJobLink !== '')
-            lst[jobAppToUpdate]['link'] = newJobLink;
+            lst[jobAppToUpdate]['link'] = newJobLink.trim();
 
         updateJobList(lst);
         setShowUpdateModal(false);
+        resetInputStates();
+    }
+
+    const resetInputStates = () => {
+        setnewJobName('');
+        setnewJobLocation('');
+        setnewJobLink('');
     }
 
     const updateJobList = (updatedList) => {
@@ -61,7 +69,7 @@ const UpdateModal = ({ setShowUpdateModal, showUpdateModal, jobAppToUpdate, jobs
                 <button onClick={updateJobApp}>Update Job</button>
             </div>
         </div>
-    </div >;
+    </div>;
 }
 
 export default UpdateModal;

@@ -3,22 +3,17 @@ import Tablerow from './Tablerow';
 
 // Component to make and display the entire table
 const Table = ({ jobs, setJobs, setJobAppToUpdate, setShowInfoModal, setShowUpdateModal }) => {
-    const lst = JSON.parse(jobs);
+    const jobList = JSON.parse(jobs);
 
     // Populates the table with data on job apps
     const makeTable = () => {
-        return lst.map(anApp => {
-            let { number, name, date, location, link, status, progress } = anApp;
-
-            return <Tablerow
-                key={number} jobs={jobs} setJobs={setJobs} number={number} name={name}
-                date={date} location={location} link={link} status={status} progress={progress}
-                setShowUpdateModal={setShowUpdateModal} setJobAppToUpdate={setJobAppToUpdate}
-            />;
-        })
+        return jobList.map(appData => {
+            return <Tablerow key={Math.random()} jobs={jobs} setJobs={setJobs} appData={appData}
+                setShowUpdateModal={setShowUpdateModal} setJobAppToUpdate={setJobAppToUpdate} />;
+        });
     }
 
-    return (<table>
+    return <table>
         <tbody>
             <tr>
                 <th className='editTh'>Edit</th>
@@ -35,11 +30,9 @@ const Table = ({ jobs, setJobs, setJobAppToUpdate, setShowInfoModal, setShowUpda
                     </button>
                 </th>
             </tr>
-            {
-                makeTable()
-            }
+            {makeTable()}
         </tbody>
-    </table>)
+    </table>;
 }
 
 export default Table;

@@ -1,62 +1,52 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { titleCase, capitalizeState } from '../Utils';
 
 // Component used for form to input new data into the table 
 const Form = ({ jobs, setJobs }) => {
-    const jobList = JSON.parse(jobs);
     const [jobName, setJobName] = useState("");
     const [jobLocation, setJobLocation] = useState("");
     const [jobLink, setJobLink] = useState("");
+    const jobList = JSON.parse(jobs);
 
-    // Convert input into title case (Ex: hi there => Hi There)
-    const titleCase = (input) => {
-        if (input === '') return;
-        return input.split(' ').map(word => word[0].toUpperCase() + word.substr(1)).join(' ');
-    }
-
-    // Capitalizes the state for locations (Ex Herndon, va => Herndon, VA)
-    const capitalizeState = (input) => {
-        if (input === undefined) return;
-
-        let tokens = input.split(',').map(token => token.trim());
-
-        if (tokens[1])
-            tokens[1] = tokens[1].toUpperCase();
-
-        return tokens.join(', ');
-    }
-
-    // Adds a new job application to the table
     const addNewJobApp = () => {
-        if (jobName === '' || jobLocation === '' || jobLink === '')
-            return;
+        if (isBadInput()) return;
+        let newJobData = createNewJobApp();
+        updateJobList(newJobData);
+        clearInputValues();
+    }
 
-        let name = titleCase(jobName.trim());
-        let location = capitalizeState(titleCase(jobLocation.trim()));
+    const isBadInput = () => {
+        return jobName.trim() === '' || jobLocation.trim() === '' || jobLink.trim() === '';
+    }
+
+    const createNewJobApp = () => {
+        let newAppNumb = jobList.length + 1;
+        let name = titleCase(jobName);
+        let dateToday = new Date().toLocaleDateString();
+        let location = capitalizeState(titleCase(jobLocation));
         let link = jobLink.trim();
 
         const newJobApp = {
-            "number": jobList.length + 1,
+            "number": newAppNumb,
             "name": name,
-            "date": new Date().toLocaleDateString(),
+            "date": dateToday,
             "location": location,
             "link": link,
             "progress": "Waiting",
             "status": "Applied"
         };
 
-        jobList.push(newJobApp);
-
-        let updatedJobAppList = JSON.stringify(jobList);
-
-        localStorage.setItem('jobAppList', updatedJobAppList);
-
-        setJobs(updatedJobAppList);
-        clearInputs();
+        return newJobApp;
     }
 
-    // Clears out input fields
-    const clearInputs = () => {
+    const updateJobList = (newJobData) => {
+        jobList.push(newJobData);
+        let newJobList = JSON.stringify(jobList);
+        setJobs(newJobList);
+        localStorage.setItem('jobAppList', newJobList);
+    }
+
+    const clearInputValues = () => {
         setJobName("");
         setJobLocation("");
         setJobLink("");
@@ -65,18 +55,18 @@ const Form = ({ jobs, setJobs }) => {
     return <div className='inputDiv'>
         <label>
             Company Name:
-            <input id='companyName' value={jobName} onChange={e => setJobName(e.target.value)}></input>
+            <input id='companyName' type='text' value={jobName} onChange={e => setJobName(e.target.value)}></input>
         </label>
         <label>
-            Location:
-            <input id='jobLocation' value={jobLocation} onChange={e => setJobLocation(e.target.value)}></input>
+            Job Location:
+            <input id='jobLocation' type='text' value={jobLocation} onChange={e => setJobLocation(e.target.value)}></input>
         </label>
         <label>
             App Link:
-            <input id='appLink' value={jobLink} onChange={e => setJobLink(e.target.value)}></input>
+            <input id='appLink' type='text' value={jobLink} onChange={e => setJobLink(e.target.value)}></input>
         </label>
         <button id='addJobButton' onClick={addNewJobApp}>Add</button>
-    </div >
+    </div>;
 }
 
 export default Form;
