@@ -30,6 +30,8 @@ const Tablerow = ({ jobs, appData, setJobs, setShowUpdateModal, setJobAppToUpdat
     }
 
     const deleteJobApp = (number) => {
+        if (!deleteConfirmed()) return;
+
         // Remove the job app with number from the list
         let updatedJobList = jobList.filter(aJobApp => aJobApp.number !== number);
         let jobNumber = 1;
@@ -42,6 +44,13 @@ const Tablerow = ({ jobs, appData, setJobs, setShowUpdateModal, setJobAppToUpdat
         })
 
         updateJobList(updatedJobList);
+    }
+
+    const deleteConfirmed = () => {
+        let message = 'Are you sure you want to delete this job app?\n(This CANNOT be undone!)\n' +
+            `\nApplication #: ${number}\nCompany Name: ${name}\nLocation: ${location}`;
+
+        return window.confirm(message);
     }
 
     // Update job list state & localstorage data
