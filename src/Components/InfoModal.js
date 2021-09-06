@@ -20,28 +20,31 @@ const InfoModal = ({ showInfoModal, setShowInfoModal }) => {
                     <hr />
                     <div className='sectionHeader'>Stats</div>
                     <p id='statDescription'>
-                        <i># Days Searching: </i>Days since the first job app on the application was entered<br />
-                        <i># Jobs Applied: </i>Total jobs you have applied to based on data submitted<br />
-                        <i># Waiting on: </i>Total jobs that you're waiting to hear back from (Marked as 'Waiting')<br />
-                        <i># Rejections: </i>Total jobs that you've been rejected from so far<br />
-                        <i>Rejection Rate: </i>Percentage of your rejection (# of Rejections / # jobs Applied)<br />
+                        - <i># Days Searching: </i>Days since the first job app on the application was entered<br />
+                        - <i># Jobs Applied: </i>Total jobs you have applied to based on data submitted<br />
+                        - <i># Waiting on: </i>Total jobs that you're waiting to hear back from (Marked as "Waiting")<br />
+                        - <i># Rejections: </i>Total jobs that you've been rejected from so far<br />
+                        - <i>Avg. Days Per App: </i>The average number of days per job applied to<br />
+                        - <i>Rejection Rate: </i>Percentage of your rejection (# of Rejections / # jobs Applied)<br />
                     </p>
                 </div>
                 <hr />
                 <div id='directions'>
                     <div className='sectionHeader'>Directions</div>
                     <p id='directionDescription'>
-                        To add a new application to the table, Company Name, Location and App Link can't be left empty.
+                        - To add a new application to the table, Company Name, Location and App Link can't be left empty.
                         <br />
-                        To keep stats accurate, update your progress and status of each job app as they change.
+                        - To keep stats accurate, update your progress and status of each job app as they change.
                         <br />
-                        To delete a job app, click on the app's trash icon (Last column of job app's row).
+                        - To delete a job app, click on the app's trash icon (Last column of job app's row).
                         <br />
-                        To update progress/status of an app, click on the job app's respective progress/status button.
+                        - To update progress/status of an app, click on the job app's respective progress/status button.
                         <br />
-                        To edit a job app, click on the job's edit icon. You can edit the job name, location or link.
+                        - To edit a job app, click on the job's edit icon. You can edit the job name, location or link.
                         <br />
-                        Note: Marking a job's status as "Rejected" will disable the job's progress button.
+                        - Note: Use link directly copied from browser (Link must include protocol: http, https, etc.).
+                        <br />
+                        - Note: Marking a job's status as "Rejected" will disable the job's progress button.
                     </p>
                 </div>
             </div>

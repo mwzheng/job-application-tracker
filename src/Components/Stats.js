@@ -5,12 +5,14 @@ import React, { useEffect, useState } from 'react';
 // - # jobs you've applied to
 // - # job apps you're waiting on a reply from
 // - # job rejections
+// - Avg Days per applications
 // - % of jobs you've been rejected from
 const Stats = ({ jobs }) => {
     const [jobSearchingDays, setJobSearchingDays] = useState(0);
     const [jobsApplied, setJobsApplied] = useState(0);
     const [jobsWaiting, setJobsWaiting] = useState(0);
     const [jobRejections, setJobRejections] = useState(0);
+    const [avgDaysPerApp, setAvgDaysPerApp] = useState(0);
     const [jobRejectionPercentage, setJobRejectionPercentage] = useState(0);
     const jobAppList = JSON.parse(jobs);
 
@@ -21,14 +23,16 @@ const Stats = ({ jobs }) => {
         let numbOfRejections = jobAppList.filter(anApp => anApp.status === 'Rejected').length;
         let rejectionPercentage = (((numbOfRejections) / numbOfApplications) * 100).toFixed(2);
         let waitingApps = numbOfApplications - numbOfRejections;
-        setStats(daysOfJobSearching, numbOfApplications, waitingApps, numbOfRejections, rejectionPercentage);
+        let daysPerApp = (daysOfJobSearching / numbOfApplications).toFixed(2);
+        setStats(daysOfJobSearching, numbOfApplications, waitingApps, numbOfRejections, daysPerApp, rejectionPercentage);
     }
 
-    const setStats = (daysSearching, totalJobs, jobsWaiting, jobsRejected, rejectionPercentage) => {
+    const setStats = (daysSearching, totalJobs, jobsWaiting, jobsRejected, avgDaysPerApp, rejectionPercentage) => {
         setJobSearchingDays(daysSearching);
         setJobsApplied(totalJobs);
         setJobsWaiting(jobsWaiting);
         setJobRejections(jobsRejected);
+        setAvgDaysPerApp(avgDaysPerApp);
         setJobRejectionPercentage(rejectionPercentage);
     }
 
@@ -64,6 +68,10 @@ const Stats = ({ jobs }) => {
             <div>
                 <div># Rejections:</div>
                 <span id='numbRejections'>{jobRejections}</span>
+            </div>
+            <div>
+                <div>Avg. Days Per App:</div>
+                <span id='avgAppsPerDay'>{avgDaysPerApp}</span>
             </div>
             <div>
                 <div>Rejection Rate:</div>
