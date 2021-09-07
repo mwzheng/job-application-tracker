@@ -48,7 +48,7 @@ const Tablerow = ({ jobs, appData, setJobs, setShowUpdateModal, setJobAppToUpdat
     const deleteJobApp = (number) => {
         if (!deleteConfirmed()) return;
         let updatedJobList = jobList.filter(aJobApp => aJobApp.number !== number);
-        updatedJobList = reIndexApps(updateJobList);
+        updatedJobList = reIndexApps(updatedJobList);
         updateJobList(updatedJobList);
     }
 
