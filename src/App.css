@@ -119,6 +119,8 @@ i, p {
     border-radius: 15px;
     font-size: 1.2vw;
     background-color: #5ca6e2;
+    text-align: center;
+    padding: 5px 0;
 }
 
 .statusButton, .jobLinkButton, .deleteButton, .progressButton, .editBttn, #infoBttn {
@@ -164,12 +166,16 @@ i, p {
     color: #168cec;
 }
 
-#applied.statusButton {
+.applied {
     background-color: rgb(178, 238, 178);
 }
 
-#rejected.statusButton {
+.rejected {
     background-color: rgb(241, 177, 177);
+}
+
+.unknown {
+    background-color: rgb(231, 222, 168);
 }
 
 #resetContainer {
@@ -179,7 +185,7 @@ i, p {
 #resetButton {
     margin: auto;
     transition: ease-in-out .3s;
-    background-color: rgb(245, 193, 193);
+    background-color: rgb(246, 174, 174);
     font-weight: bold;
     font-size: 1.45vw;
     border-radius: 10px;
@@ -261,3 +267,4 @@ i, p {
 .updateAppInputBox {
     width: 6vw;
 }
+
