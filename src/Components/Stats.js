@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import StatsModal from './StatsModal'
 
 // Component displays job stats: 
 // - # days since you've started job searching
@@ -14,10 +15,16 @@ const Stats = ({ jobs }) => {
     const [jobRejections, setJobRejections] = useState(0);
     const [avgDaysPerApp, setAvgDaysPerApp] = useState(0);
     const [jobRejectionPercentage, setJobRejectionPercentage] = useState(0);
+    const [showStatsModal, setShowStatsModal] = useState(false);
+    let allStats = {};
     const jobAppList = JSON.parse(jobs);
 
     const calcJobStats = () => {
-        if (jobAppList.length === 0) return;
+        if (jobAppList.length === 0) {
+            setStats(0, 0, 0, 0, 0, 0);
+            return;
+        }
+
         let numbOfApplications = jobAppList.length;
         let daysOfJobSearching = calcDaysJobSearching();
         let numbOfRejections = jobAppList.filter(anApp => anApp.status === 'Rejected').length;
@@ -25,6 +32,17 @@ const Stats = ({ jobs }) => {
         let waitingApps = numbOfApplications - numbOfRejections;
         let daysPerApp = (daysOfJobSearching / numbOfApplications).toFixed(2);
         setStats(daysOfJobSearching, numbOfApplications, waitingApps, numbOfRejections, daysPerApp, rejectionPercentage);
+    }
+
+    const populateAllStatsData = () => {
+        allStats = {
+            jobSearchingDays: jobSearchingDays,
+            jobsApplied: jobsApplied,
+            jobsWaiting: jobsWaiting,
+            jobRejections: jobRejections,
+            avgDaysPerApp: avgDaysPerApp,
+            jobRejectionPercentage: jobRejectionPercentage,
+        }
     }
 
     const setStats = (daysSearching, totalJobs, jobsWaiting, jobsRejected, avgDaysPerApp, rejectionPercentage) => {
@@ -48,9 +66,11 @@ const Stats = ({ jobs }) => {
         return daysOfJobSearching;
     }
 
+    populateAllStatsData();
     useEffect(calcJobStats);
 
     return <div id='statsContainer'>
+        <StatsModal jobs={jobs} allStats={allStats} showStatsModal={showStatsModal} setShowStatsModal={setShowStatsModal} />
         <h3>Job Application Stats</h3>
         <div id='jobStats'>
             <div>
@@ -78,7 +98,8 @@ const Stats = ({ jobs }) => {
                 <span id='rejections'>{jobRejectionPercentage}</span>%
             </div>
         </div>
-    </div>;
+        <button onClick={e => setShowStatsModal(true)}>Visualize</button>
+    </div >;
 }
 
 export default Stats;
